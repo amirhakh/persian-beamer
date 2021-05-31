@@ -1,0 +1,638 @@
+% !TeX spellcheck = fa_FA
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[xcolor=dvipsnames, professionalfonts, aspectratio=169, 11pt]{beamer}
+
+\usepackage{multicol}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+\usepackage{dblfnote}
+\usepackage{float}
+\usepackage{setspace}
+
+%\hypersetup{colorlinks = true}
+
+% ---------------------------------------
+% color
+% ---------------------------------------
+
+\usefonttheme{serif}
+\usetheme[compress]{Ilmenau} %\usetheme{Madrid}
+%% hide subsection row in headline in Ilmenau
+\makeatletter
+ \beamer@theme@subsectionfalse
+\makeatother
+%\usetheme{AnnArbor}
+%\usetheme{Frankfurt}
+%\usetheme{CambridgeUs}
+
+% \usecolortheme{wolverine}
+
+% cool and blue
+% \usecolortheme{seahorse}
+
+% \usecolortheme{rose}
+
+%% Warm and red theme
+\usecolortheme{beaver}
+\setbeamercolor{section number projected}{bg=red,fg=white}
+\setbeamercolor*{item}{fg=red}
+
+%% green theme
+% \usecolortheme{spruce}
+% \setbeamercolor{section number projected}{bg=OliveGreen,fg=white}
+% \setbeamercolor*{item}{fg=OliveGreen}
+
+% \usecolortheme[named=green]{structure}
+%\setbeamercolor{normal text}{fg=blue}\usebeamercolor*{normal text}
+
+\include{eslahBeamer}
+
+% برای شفاف کردن مواردی که در
+%\setbeamercovered{transparent}
+
+\setbeamertemplate{frametitle}
+{
+	\nointerlineskip
+	\begin{beamercolorbox}[sep=0.0cm,ht=1.6em,wd=\paperwidth]{frametitle}
+		\vbox{}\vskip-1ex%
+	\centering
+%	\raisebox{-1em}{\includegraphics[height=1.6em]{./img/eng-logo.png}} \hfill
+		{  \strut\insertframetitle\strut}
+%		\hfill		\includegraphics[height=1.6em]{./img/logo.png}
+		\vskip+0.2ex %		\vskip-0.8ex%
+	\end{beamercolorbox}
+}
+
+
+\makeatletter
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{\tiny%\fontsize{7}{8}\selectfont%
+		\begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}
+			\hspace*{1ex}\usebeamerfont{author in head/foot}\insertshortauthor~~\beamer@ifempty{\insertshortinstitute}{}{(\insertshortinstitute)}\hspace*{1ex}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}
+			\usebeamerfont{title in head/foot}\insertshorttitle
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}
+			\hfill
+			\usebeamerfont{date in head/foot}\insertshortdate{}
+			\hfill % \hspace*{4ex}% original: 2ex
+			\inserttotalframenumber / \insertframenumber{} \hspace*{1ex}% original: 2ex
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+\makeatother
+\makeatletter
+\setbeamerfont{frametitle}{size=\small}
+\makeatother
+%% simple headline for one row sectino name and one row subsection name
+%\setbeamertemplate{headline}{
+%	\begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex]{section in head/foot}%
+%		\hspace{3ex}{\insertsectionhead}
+%	\end{beamercolorbox}
+%	\begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+%		\usebeamerfont{subsection in head/foot}\insertsubsectionhead
+%\end{beamercolorbox}}
+
+%% add section navigation above frame title (miniframe style)
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}{section in head/foot}
+        \vskip0pt\insertnavigation{\paperwidth}\vskip2pt
+    \end{beamercolorbox}%
+}
+% add section navigation above frame title
+%\setbeamertemplate{headline}
+%{
+%	\begin{beamercolorbox}{section in head/foot}
+%		\vskip2pt\insertsectionnavigationhorizontal{\textwidth}{}{}\vskip2pt
+%	\end{beamercolorbox}
+%}
+\setbeamertemplate{section in head/foot}{\color{fg}\insertsectionhead}
+\setbeamertemplate{section in head/foot shaded}{\color{fg!50!bg}\insertsectionhead}
+\setbeamercolor{section in head/foot}{fg=white}
+
+%%% can add logo to section frame
+%% \newcommand{\secimage}{example-image-a}
+%%% can change in document with
+%% \renewcommand{\secimage}{example-image-b}
+%\AtBeginSection[]{
+%	\begin{frame}
+%		\vfill
+%		\centering
+%%       \includegraphics[width=4cm]{\secimage}
+%		\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+%			\usebeamerfont{title}\insertsectionhead\par%
+%		\end{beamercolorbox}
+%		\vfill
+%	\end{frame}
+%}
+
+
+\title
+ [متن کوتاه شدهٔ تیتر - نمونه ارائه فارسی]
+{نمونه ارائه فارسی با beamer در \LaTeX}
+
+\author[حاجی علی خمسهء]{امیر حاجی علی خمسهء}
+\subtitle{ارائهٔ نمونه‌ای}
+\institute[دانشکده فنی/دانشگاه تهران]{
+    دانشکدهٔ مهندسی برق و کامپیوتر  /  دانشگاه تهران \\
+    \url{http://ece.ut.ac.ir/}
+}
+%\date{زمستان ۱۳۹۹}
+\subject{مهندسی کامپیوتر}
+
+% \AtBeginDocument{
+    \makeatletter
+    \hypersetup{
+        pdftitle={نمونه ارائه فارسی با beamer},
+        pdfauthor={امیر حاجی علی خمسهء},
+        pdfsubject={Thesis in {نمونه ارائه فارسی با beamer}},
+%        pdfkeywords={\@latinkeywords},
+        pdfdirection={R2L}
+    }
+    \makeatother
+% }
+
+\titlegraphic{
+    \vspace{-2cm}
+    \makebox[0.9\paperwidth]{
+        \includegraphics[height=1.4cm]{./img/eng-logo.png}
+        \hfill
+        \includegraphics[height=1.4cm]{./img/logo.png}
+        \vspace{5 mm}
+    }
+}
+
+
+\begin{document}
+
+    \DefaultMathsDigits
+
+\begin{withoutheadline}
+\frame{\maketitle}
+\end{withoutheadline}
+
+
+ \begin{frame}
+ 	\frametitle{فهرست}
+     % \raggedright
+ 	\tableofcontents
+ \end{frame}
+
+%%============multicolumns TOC ==============
+%\setbeamertemplate{section in toc}[circle]
+\begin{frame}{فهرست}%to allow TOC break
+    \begin{columns}[onlytextwidth]
+        \begin{column}{.1\textwidth}\end{column}
+        \begin{column}{.3\textwidth}
+            % \raggedleft
+            \tableofcontents[sections=1-3, subsubsectionstyle=hide/hide,hideothersubsections]
+        \end{column}
+        \begin{column}{.3\textwidth}
+            % \raggedleft
+            \tableofcontents[sections=4-6, subsubsectionstyle=hide/hide,hideothersubsections]%hideothersubsections
+        \end{column}
+        \begin{column}{.3\textwidth}
+            % \raggedleft
+            \tableofcontents[sections=7-9, subsubsectionstyle=hide/hide,hideothersubsections]%hideothersubsections
+        \end{column}
+    \end{columns}
+\end{frame}
+%============End multicolumns TOC ==============
+
+\section{مقدمه}
+\begin{frame}
+    \frametitle{مقدمه}
+
+    \begin{columns}[onlytextwidth]
+        \setbeamercolor{alerted text}{fg=red}
+        \setbeamerfont{alerted text}{series=\bfseries}
+        \setbeamercovered{transparent}
+        \begin{column}{.4\textwidth}
+            % \raggedleft
+            \begin{moredi}
+                \item نمونه از یک لیست دولایه در کنار یک تصویر
+                \begin{moredi}[<1>]
+                    \item در این لیست موارد زیادی می‌تواند قرار بگیرد
+                    \item مثلاً
+                    \item $\cdots$
+
+                \end{moredi}
+            \end{moredi}
+        \end{column}
+        \begin{column}{.6\textwidth}
+            % \raggedleft
+            \begin{moredi}
+                \item این مورد برای یک ترکیب دولایه ای آماده شده
+                \begin{moredi}
+                    \item<1> این مورد فقط در قسمت اول دیده می‌شود
+                    \item \alert<2>{این مورد تأکیدی در صفحهٔ دوم دیده می‌شود}
+                    \item<1> موارد بیشتر
+
+                \end{moredi}
+            \end{moredi}
+            \begin{figure}
+                % \includegraphics[width=\textwidth]{./img/social-sais.jpg}
+                \vspace{-1em}
+                \includegraphics[height=0.35\textheight]{logo.png}
+                \caption{اولین تصویر }
+            \end{figure}
+        \end{column}
+        % \begin{column}{.01\textwidth}\end{column}
+    \end{columns}
+
+\end{frame}
+
+\section{مفاهیم اولیه}
+\subsection{زنجیرهٔ مارکوف}
+\begin{frame}
+    \frametitle{زنجیرهٔ مارکوف}
+
+    زنجیرهٔ مارکوف\LTRfootnote{Markov Chain}
+    \begin{moredi}
+        \item مدلی برای توصیف توالی رخدادهای احتمالی (\textbf{فرایند تصادفی}\LTRfootnote{Stochastic process})
+        \item احتمال هر رخداد فقط به وضعیت رخداد قبلی خود وابسته (\textbf{بدون حافظه}\LTRfootnote{Memory less})
+        \item قابل تعریف در دو حالت: زمان گسسته و زمان پیوسته
+    \end{moredi}
+    % \begin{eqnarray}
+    %     \label{eqn:discreate-time-markov-chain}
+    %     \Pr(X_{n+1}=x\mid X_{1}=x_{1},X_{2}=x_{2},\ldots ,X_{n}=x_{n})=\Pr(X_{n+1}=x\mid X_{n}=x_{n}) \\
+    %     \label{eqn:continous-time-markov-chain}
+    %     \Pr(X_{t_{n+1}}=i_{n+1}\mid X_{t_{0}}=i_{0},X_{t_{1}}=i_{1},\ldots ,X_{t_{n}}=i_{n})=p_{i_{n}i_{n+1}}(t_{n+1}-t_{n})
+    % \end{eqnarray}
+    \pause
+    \begin{table}
+        \caption{حالت‌های معروف برای مدل مارکوف}
+        \vspace{-1em}
+        \small
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{حالت‌ها}       & \textbf{زمان پیوسته}       & \textbf{زمان گسسته}        \\
+            \hline
+            \textbf{وضعیت گسسته}  & فرایند مارکوف              & زنجیره مارکوف              \\
+            \hline
+            \textbf{وضعیت پیوسته} & فرایند مارکوف وضعیت پیوسته & زنجیره مارکوف وضعیت پیوسته \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+\subsection{نظریهٔ میدان متوسط}
+\begin{frame}
+    \frametitle{نظریهٔ میدان متوسط (\lr{MFT}\LTRfootnote{Mean Field Theory})}
+
+    \begin{moredi}
+        \item رفتار مدل‌های بزرگ و پیچیدهٔ تصادفی را به کمک یک مدل ساده‌تر
+        \begin{moredi}
+            \item تبدیل یک مسئله با تعداد بسیار زیادی از اجزای کوچک که با یکدیگر در ارتباط هستند و رفتار تصادفی دارند
+            \item به یک مسئله سادهٔ تک ذره‌ای
+            \item تحلیل رفتار میانگین کل ذرات را مدل می‌کند
+        \end{moredi}
+        \item تبدیل و تحلیل یک مسئلهٔ بین ذره‌ای برای تعداد بی‌شمار ذره به یک روش تک ذره‌ای
+    \end{moredi}
+    \begin{figure}
+        \begin{tikzpicture}
+            {\fill (3.1,0) circle (0.1);}
+            \draw[thick,->] (1,0) -- node[above] {MFT} (3,0) ;
+            \draw (0,0) ellipse (1 and 1);
+            \clip (0,0) ellipse (1 and 1);
+            \pgfmathsetseed{24122015}
+            \foreach \p in {1,...,500} { \fill (1*rand,1*rand) circle (0.02);  }
+        \end{tikzpicture}
+        \caption{تبدیل مسئله بسیار ذره‌ای به تک ذره‌ای برای تحلیل رفتار کل ذرات در کنار هم به کمک نظریهٔ میدان متوسط}
+        \label{fig:mft-sample}
+    \end{figure}
+
+\end{frame}
+
+\subsection{مدل‌های انتشار بیماری}
+\begin{frame}
+    \frametitle{مدل اولیهٔ مستعد-بیمار-ایمن (\lr{SIR})}
+
+    \begin{columns}[onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{moredi}
+                \item مدل SIR در سال ۱۹۲۷ میلادی، توسط آقای کِرماک\footnote[frame]{W. O. Kermack} و آقای مَک‌کِندریک\footnote[frame]{A. G. McKendrick}
+                \begin{moredi}
+                    \item سالم (در معرض ابتلا) در قالب $S(t)$
+                    \item مبتلا در قالب $I(t)$
+                    \item بهبود یافته (یا ایمن) در قالب $R(t)$
+                \end{moredi}
+            \end{moredi}
+            \vspace{-1em}
+
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[thick,scale=1.1, every node/.style={scale=1}]
+                    \node[state] (s) at (-2, 0 ) {S};
+                    \node[state] (i) at ( 0 ,0 ) {I};
+                    \node[state] (r) at ( 2, 0 ) {R};
+
+                    \draw[->] (s) edge node [anchor=north] {$\beta$} (i);
+                    \draw[->] (i) edge[above] node [anchor=north] {$\gamma$} (r);
+                \end{tikzpicture}
+                \caption{مدل مارکوف انتشار بیماری SIR}
+                \label{fig:SIR}
+            \end{figure}
+            \begin{equation}
+                \label{eqn:sir-ode-formulation}
+                \begin{aligned}
+                    {\frac {dS}{dt}} & =-{\frac {\beta SI}{N}}         \\
+                    \frac {dI}{dt}   & ={\frac {\beta SI}{N}}-\gamma I \\
+                    \frac {dR}{dt}   & =\gamma I
+                    %                    N                & =S+I+R
+                \end{aligned}
+            \end{equation}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{مدل‌های معروف دیگر}
+
+    \begin{moredi}
+        \setbeamercovered{transparent}
+        \item<1> \lr{SIS}: بازگشت به حالت مستعد پس از بیماری
+        \item<1> \lr{SIRS}:‌ بازگشت به دورهٔ مستعد پس از یک دورهٔ مشخص
+        \item<1-2> \lr{SEIS}: وجود یک دورهٔ نهان و بدون علامت پس از ابتلا و قبل از بروز عفونت
+        \item<1> \lr{MSIR}: در نظر گرفتن وضعیت مصونیت کودکان در مقابل بیماری
+        \item<1-2> \lr{SAIS}: در نظر گرفتن وضعیت آگاه برای کاهش نرخ ابتلا
+        \item<1> \lr{SIRC}: با وضعیت ناقل\LTRfootnote{Carrier}
+        \item<1> \lr{SIRV}: با وضعیت هوشیاری\LTRfootnote{Vigilant}
+
+    \end{moredi}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{مدل مستعد-آگاه-بیمار-مستعد (\lr{SAIS})}
+
+    \begin{columns}[onlytextwidth]
+        \begin{column}{.5\textwidth}
+            \begin{moredi}
+                % \item یک وضعیت جدید برای هر گره در نظر گرفته می‌شود که فرد با آگاهی و آمادگی از خطر بیماری و رعایت نکات پیشگیری
+                \item کاهش نرخ ابتلا از $\beta$ به $\beta_a$ برای افراد آگاه و مراقب
+                \item تغییر وضعیت به حالت آگاه و مراقب با نرخ $\kappa$
+            \end{moredi}
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=\textwidth]{./img/sais-transition.pdf}
+                \caption{تغییرات گذرا برای مدل SAIS}
+                \label{fig:sais-transition}
+            \end{figure}
+            % \vspace{-1em}
+            % \begin{eqnarray}
+            %     \label{eq:sais-math}
+            %     \dfrac{dS}{dt}&=&\gamma I - (\beta+\kappa) S\dfrac{I}{N}\\
+            %     \dfrac{dA}{dt}&=&\kappa S\dfrac{I}{N} - \beta_a A\dfrac{I}{N}\\
+            %     \dfrac{dI}{dt}&=&(\beta S + \beta_a A)\dfrac{I}{N} - \gamma I\\
+            %     \label{eq:sais-math-end}
+            %     N&=&S+A+I
+            % \end{eqnarray}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \begin{figure}[ht]
+                \centering
+                \begin{tikzpicture}[thick,scale=1.1, every node/.style={scale=1.0}]
+                    \node[state] (s) at (-1.5, 0 ) {S};
+                    \node[state] (a) at ( 0 ,-2 ) {A};
+                    \node[state] (i) at ( 1.5, 0 ) {I};
+
+                    \draw[->] (i) edge[bend left, below] node [anchor=south] {$\gamma$} (s);
+                    \draw[->] (s) edge[bend left, above] node [anchor=north] {$\beta$} (i);
+                    \draw[->] (a) edge[bend right, above] node [anchor=east] {$\beta_a$} (i);
+                    \draw[->] (s) edge[bend right, above] node [anchor=west] {$\kappa$} (a);
+                \end{tikzpicture}
+                \caption{مدل مارکوف انتشار بیماری SAIS}
+                \label{fig:SAIS}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\subsection{منطق فازی}
+\begin{frame}[allowframebreaks]
+    \frametitle{منطق فازی}
+
+    \begin{moredi}
+        \item روشی برای مدل کردن ارتباط بین ورودی و خروجی
+        \item تعریف \textbf{مجموعهٔ فازی}\LTRfootnote{Fuzzy Set}
+        \item اعضای مجموعهٔ فازی شامل \textbf{متغیرهای زبانی} هستند که مقادیر آن‌ها از \textbf{مقادیر زبانی}\LTRfootnote{Linguistic values} انتخاب می‌شود.
+        \item تعریف مقدار حدودی بین ۰ تا ۱ برای ورودی و خروجی‌ها (\textbf{درجهٔ عضویت}\LTRfootnote{Membership grade})
+    \end{moredi}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[height=.3\textheight]{Fuzzy_logic_temperature_en.pdf}
+        \caption{تابع عضویت فازی برای دمای محیط}
+        \label{fig:fuzzy-logic-temperature}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{روش عملکرد منطق فازی}
+
+    \begin{enumerate}\RTList
+        \item تبدیل ورودی‌های عددی به \textbf{متغیرهای زبانی}\LTRfootnote{Linguistic variable} (غیر دقیق و حسی) یا \textbf{فازی سازی}
+              \begin{moredi}
+                  \item بر اساس  \textbf{تابع عضویت فازی}
+              \end{moredi}
+        \item \textbf{استنتاج فازی} مطابق با \textbf{قواعد فازی} تعریف شده (بر اساس توصیف زبانی اگر $\leftarrow$ آنگاه)
+        \item تبدیل خروجی فازی به یک متغیر عددی (\textbf{فازی گشایی})
+              \begin{moredi}
+                  \item بر اساس  \textbf{تابع عضویت فازی}
+                  \item به کمک روش‌های تجمیع سازی نتایج
+              \end{moredi}
+    \end{enumerate}
+
+\end{frame}
+
+\section{کارهای پیشین}
+\begin{frame}
+    \frametitle{کارهای پیشین}
+
+    دسته بندی کارهای پیشین در زمینهٔ شبکه‌های اجتماعی و انتشار بیماری  یا ویروس:
+    {
+    \setbeamercovered{transparent}
+    \begin{enumerate}\RTList
+        \item<1-2> انتشار بیماری
+        \item ساختار عمومی انتشار بیماری
+        \item تأثیر گذاری اجتماعی و نفوذ فکری
+        \item تغییرات آگاهی و رفتار اجتماعی
+        \item<1> گراف پویا و تغییرات یال و گره
+        \item<1> تعادل و پایداری گراف
+        \item<1> کنترل شبکه و تغییر سیاست
+        \item<1> پیش‌بینی انتشار بیماری
+        \item<1> انتشار ویروس و بد افزارِ رایانه‌ای
+
+    \end{enumerate}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{انتشار بیماری}
+
+    \begin{moredi}
+        \item بررسی مدل آشکار و نهان بر میزان شیوع جامعه \cite{chen2020time}
+        \item بررسی مدل \lr{SEIR} برای بیماری کووید-۱۹ با توجه به ارتباط‌های بین شهری و بین کشوری در اروپا \cite{wang2019coevolution,estrada2020covid}
+        \item بررسی نویز (خطا در اطلاعات ورودی) و تأثیر آن بر نتیجهٔ تحلیل مدل \lr{SIS} \cite{vizuete2020graphon}
+        \item در نظر گرفتن واکسیناسیون در مدل \lr{SIS} \cite{khanjanianpak2020competition}
+        \item تطبیق اطلاعات بیماری کووید-۱۹ در کشور فرانسه بر روی مدل \lr{SEIR} \cite{efimov2020interval}
+    \end{moredi}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{ساختار عمومی انتشار بیماری}
+
+    \begin{moredi}
+        \item ساختار عمومی انتشار بیماری برای مدل‌های رایج (مثل \lr{SIS, SAIS}) \cite{moon2020group}
+        \item بررسی ساختارهای متداول بیماری بر روی شبکه‌های چند لایه \cite{abhishek2020sis}
+    \end{moredi}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{تأثیر گذاری اجتماعی و نفوذ فکری}
+
+    \begin{moredi}
+        \item تحلیل انتشار شایعه در شبکه‌های اجتماعی برخط با در نظر گرفتن مدل نظریهٔ بازی \cite{huang2020developing}
+        \item ارائهٔ یک مدل شبیه‌سازی برای بررسی شرایط و نتیجه رسیدن به اجماع  در یک شبکهٔ برخط با دو گروه فکری مخالف با در نظر گرفتن کیفیت ارتباط‌ها \cite{bolzern2020opinion,nettasinghe2019diffusion}
+        \item بررسی تأثیر اخبار انتشار بیماری کووید-۱۹ در شبکه‌های اجتماعی برخط \cite{cinelli2020covid}
+    \end{moredi}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{تغییرات آگاهی و رفتار اجتماعی}
+
+    \begin{moredi}
+        \item بررسی مدل بیماری \lr{SEIV}\LTRfootnote{Susceptible-Exposed-Infected-Vigilant} برای یک شبکه و تأثیر هوشیاری افراد بر تعداد ارتباط‌های فعال با دیگران و زمان رسیدن به حالت پایدار بدون بیماری \cite{li2019control,bhowmick2020influence}
+        \item تأثیر آگاهی و میزان شیوع بیماری در ارتباط بین افراد در یک شبکهٔ دو لایه (یک لایه ثابت و یک لایهٔ متغیر)\cite{sahneh2019contact}
+    \end{moredi}
+
+\end{frame}
+
+\section{حل مسئله}
+\begin{frame}
+    \frametitle{فرایند کلی حل مسئله}
+    {
+        \setbeamercovered{transparent}
+        شبیه‌سازی:
+        \begin{enumerate}\RTList
+            \item<-1> تصادفی (محاسبهٔ وضعیت و شرایط جدید هر گره و به روز کردن همه گره‌ها در یک لحظه)
+            \item<2-> آماری (محاسبهٔ امید ریاضی و میانگین وضعیت و شرایط انتقال برای کل شبکه در مدل مارکوف)
+
+        \end{enumerate}
+
+        مدل‌سازی:
+        \begin{enumerate}\RTList
+            \item تعریف متغیرهای فازی و توابع عضویت (فضای پیوسته)
+            \item تعریف جدول قواعد فازی (ارتباط بین ورودی و خروجی‌های مسئله)
+            \item تعریف روابط ریاضی تجمیع سازی برای هر گره
+            \item<2-> تعریف مدل مارکوف معادل
+            \item<2-> تعریف روابط آماری و کلی (مبتنی بر نظریهٔ میدان متوسط)
+            \item<1> تعریف الگوی بیماری
+            \item شبیه‌سازی
+
+        \end{enumerate}
+    }
+\end{frame}
+
+\section{منابع و مراجع}
+\begin{frame}[allowframebreaks,noframenumbering]
+    %    \frametitle{منابع}
+    %    \nocite{*} % to add all reference in bib
+    % \printbibliography
+    \begin{latin}
+        \bibliographystyle{unsrt-fa} % ieeetr-plain=unsrt
+        \scriptsize
+        \bibliography{./references}
+    \end{latin}
+
+\end{frame}
+
+% \appendix
+\section[تشکر]{تشکر از توجه شما}
+\section{صفحات پشتیبان}
+
+\begin{frame}
+
+    \begin{example}
+    این یک مثال است.
+    \end{example}
+
+    \begin{definition}
+    این یک تعریف است.
+    \end{definition}
+
+    \begin{theorem}
+    این یک قضیه است.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+\frametitle{اثبات ریاضی}
+\begin{theorem}<1->[Pythagoras]
+$ a^2 + b^2 = c^2$
+یا
+    \[c^2=a^2+b^2\]
+\end{theorem}
+\begin{proof}<2->
+$\omega +\phi = \epsilon $
+\end{proof}
+\begin{corollary}<3->
+$ x + y = y + x  $
+\end{corollary}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{نتیاج شبیه‌سازی آماری}
+
+    \begin{figure}[htb]
+        %	\vspace{-2cm}
+        \centering
+        \subfloat[یادگیری=$0.75$ و فراموشی=$0.5$]{\includegraphics[width=0.48\textwidth]{ode-75-50.pdf}}\
+        \subfloat[یادگیری=$0.5$ و فراموشی $0.75$]{\includegraphics[width=0.48\textwidth]{ode-50-75.pdf}}
+        \caption{نتیجهٔ اجرای شبیه‌سازی آماری در دو حالت}
+        \label{fig:ode-sais}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{}
+
+    \small
+    \begin{algorithm}[H]
+        \caption{الگوریتم اجرای برنامهٔ شبیه‌سازی برای حالت امید ریاضی}
+        \label{alg:simulation-expectation}
+        \begin{algorithmic}[1]
+            \REQUIRE زمان $t_{max}$ به عنوان زمان لازم برای انجام شبیه‌سازی،\\
+            \REQUIRE توزیع درجهٔ گراف برای شبیه‌سازی،
+            \ENSURE ماتریس تغییرات گراف از لحظهٔ ۰ تا $t_{max}$.
+            \FOR {t از ۰ \TO $t_{max}$}
+            \STATE محاسبهٔ نرخ انتقال بیماری
+            \STATE محاسبهٔ نرخ یادگیری-فراموشی
+            \STATE محاسبهٔ وضعیت جدید مدل مارکوف بیماری و آگاهی
+            \ENDFOR
+            \RETURN {ماتریس تغییرات زمانی}
+        \end{algorithmic}
+    \end{algorithm}
+
+\end{frame}
+
+\end{document}
+
+
+
