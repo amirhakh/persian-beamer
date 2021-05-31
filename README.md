@@ -9,6 +9,7 @@
 
 تمام کدهای استتفاده شده در این قسمت، از چند منبع زیر تهیه شده است
 
+- <https://github.com/kookma/Persian-Beamer-Templates>
 - <http://qa.parsilatex.com/14100>
 - <http://qa.parsilatex.com/14148>
 - <https://github.com/sinamomken/tehran-thesis>
